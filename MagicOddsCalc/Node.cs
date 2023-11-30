@@ -9,9 +9,9 @@ namespace MagicOddsCalc
     internal class Node
     {
         private Dictionary<char, int> Deck;
-        private string CardsDrawn;
-        private Fraction Odds;
-        private List<Node> Children = new List<Node>();
+        public string CardsDrawn;
+        public Fraction Odds;
+        public List<Node> Children = new List<Node>();
 
         public Node(Dictionary<char, int> Deck)
         {
@@ -73,6 +73,11 @@ namespace MagicOddsCalc
             {
                 Children[i].PrintPretty(indent, i == Children.Count - 1);
             }
+        }
+
+        public override string ToString()
+        {
+            return CardsDrawn;
         }
     }
 }

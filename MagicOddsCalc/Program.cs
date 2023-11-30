@@ -34,7 +34,16 @@ namespace MagicOddsCalc
 
             //Parse turn file
             TurnParser tp = new TurnParser(TURN_FILE_NAME);
-            tp.DebugPrint();
+            List<Node> PassingNodes = tp.CheckTree(Tree);
+
+            Fraction Total = new Fraction(0, 1);
+            foreach (Node N in PassingNodes)
+            {
+                Console.WriteLine(N.CardsDrawn + " - " + N.Odds);
+                Total += N.Odds;
+            }
+
+            Console.WriteLine(Total.ToString());
         }
     }
 }

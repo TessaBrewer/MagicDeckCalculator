@@ -38,6 +38,22 @@ namespace MagicOddsCalc
             return NewFraction;
         }
 
+        public static Fraction operator +(Fraction a, Fraction b)
+        {
+            long NumA = a.Numerator;
+            long NumB = b.Numerator;
+            long DenA = a.Denominator;
+            long DenB = b.Denominator;
+
+            long NewNumA = NumA * DenB;
+            long NewDenA = DenA * DenB;
+
+            long NewNumB = NumB * DenA;
+            NewNumA += NewNumB;
+
+            return new Fraction(NewNumA, NewDenA);
+        }
+
         public void Simplify()
         {
             long GCD = CalcGCD();
@@ -63,7 +79,7 @@ namespace MagicOddsCalc
             return CalcGCD(q, r);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return Numerator + " / " + Denominator;
         }
