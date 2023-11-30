@@ -12,3 +12,4 @@ C:\Users\tessa.brewer\OneDrive - BearingPoint GmbH\Desktop\DotNetTraining\Magic\
 C:\Users\tessa.brewer\OneDrive - BearingPoint GmbH\Desktop\DotNetTraining\Magic\MagicOddsCalc\MagicOddsCalc\bin\Debug\net7.0\MagicOddsCalc.pdb
 C:\Users\tessa.brewer\OneDrive - BearingPoint GmbH\Desktop\DotNetTraining\Magic\MagicOddsCalc\MagicOddsCalc\obj\Debug\net7.0\MagicOddsCalc.genruntimeconfig.cache
 C:\Users\tessa.brewer\OneDrive - BearingPoint GmbH\Desktop\DotNetTraining\Magic\MagicOddsCalc\MagicOddsCalc\obj\Debug\net7.0\ref\MagicOddsCalc.dll
+C:\Users\tessa.brewer\OneDrive - BearingPoint GmbH\Desktop\DotNetTraining\Magic\MagicOddsCalc\MagicOddsCalc\bin\Debug\net7.0\Turns.txt

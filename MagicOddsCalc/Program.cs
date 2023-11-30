@@ -5,6 +5,7 @@ namespace MagicOddsCalc
 {
     class Program
     {
+        private static readonly string TURN_FILE_NAME = "./Turns.txt";
         static void Main(string[] args)
         {
             //Check that we have an even number of args
@@ -29,7 +30,11 @@ namespace MagicOddsCalc
             Tree.Spawn(TreeDepth);
 
             //Print!
-            Tree.PrintPretty("", false);
+            //Tree.PrintPretty("", false);
+
+            //Parse turn file
+            TurnParser tp = new TurnParser(TURN_FILE_NAME);
+            tp.DebugPrint();
         }
     }
 }
