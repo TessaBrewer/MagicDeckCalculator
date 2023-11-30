@@ -2,7 +2,7 @@
   "profiles": {
     "MagicOddsCalc": {
       "commandName": "Project",
-      "commandLineArgs": "12 a 33 b 33 c 34"
+      "commandLineArgs": "2 a 33 b 33 c 34"
     }
   }
 }

@@ -10,19 +10,19 @@ namespace MagicOddsCalc
     {
         private Dictionary<char, int> Deck;
         private string CardsDrawn;
-        private double Odds;
+        private Fraction Odds;
         private List<Node> Children = new List<Node>();
 
         public Node(Dictionary<char, int> Deck)
         {
-            Odds = 1.0;
+            Odds = new Fraction();
 
             CardsDrawn = "";
 
             this.Deck = Deck;
         }
 
-        public Node(Dictionary<char, int> PrevDeck, string PreviousDraws, char TopCard, double Odds)
+        public Node(Dictionary<char, int> PrevDeck, string PreviousDraws, char TopCard, Fraction Odds)
         {
             this.Odds = Odds;
 
@@ -45,7 +45,7 @@ namespace MagicOddsCalc
                 if (kv.Value <= 0)
                     continue;
 
-                double NewOdds = (double)kv.Value / CardsInDeck;
+                Fraction NewOdds = new Fraction(kv.Value, CardsInDeck);
                 NewOdds = Odds * NewOdds;
                 Node Child = new Node(Deck, CardsDrawn, kv.Key, NewOdds);
                 Children.Add(Child);
@@ -67,7 +67,7 @@ namespace MagicOddsCalc
                 Console.Write("|-");
                 indent += "| ";
             }
-            Console.WriteLine(CardsDrawn + " : " + Odds);
+            Console.WriteLine(CardsDrawn + " : " + Odds.ToString());
 
             for (int i = 0; i < Children.Count; i++)
             {
