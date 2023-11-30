@@ -54,7 +54,13 @@ namespace MagicOddsCalc
 
         public bool CheckNode(Node N)
         {
-            return true; //Short circuit
+            //Should be replaced by subclasses
+            for (int i = 0; i < Turns.Length && i < N.CardsDrawn.Length; i++) 
+            {
+                if ((Turns[i][0]) != (N.CardsDrawn[i]))
+                    return false;
+            }
+            return true;
         }
 
         public void DebugPrint()
