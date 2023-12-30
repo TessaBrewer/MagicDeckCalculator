@@ -4,39 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicOddsCalc
+using MagicOddsCalc.Tree;
+
+namespace MagicOddsCalc.Requirements
 {
-    internal class TurnParser
+    internal class TreeParser
     {
-        private string[] Turns;
+        IDrawValidator Validator;
 
-        public TurnParser(string FilePath)
+        public TreeParser(IDrawValidator Validator)
         {
-            string FileContents;
-            using (StreamReader sr = new StreamReader(FilePath))
-            {
-                FileContents = sr.ReadToEnd();
-            }
-
-            Turns = FileContents.Split('\n');
+            this.Validator = Validator;
         }
-
-        public int TurnCount => Turns.Length;
 
         public List<Node> CheckTree(Node Root)
         {
             bool Pass = CheckNode(Root);
-            bool Terminal = (Root.CardsDrawn.Length >= Turns.Length);
+            bool Terminal = Root.CardsDrawn.Length >= Validator.TurnCount;
 
-            if(Pass)
+            if (Pass)
             {
-                if(Terminal)
+                if (Terminal)
                 {
                     //Terminal Portion for Passing Nodes
                     List<Node> list = new List<Node>();
                     list.Add(Root);
                     return list;
-                } else
+                }
+                else
                 {
                     //Recursive Portion
                     List<Node> Output = new List<Node>();
@@ -54,22 +49,35 @@ namespace MagicOddsCalc
 
         public bool CheckNode(Node N)
         {
-            //Should be replaced by subclasses
-            for (int i = 0; i < Turns.Length && i < N.CardsDrawn.Length; i++) 
+            Dictionary<string, int> Draws = new Dictionary<string, int>();
+
+            foreach (char c in N.CardsDrawn)
             {
-                if ((Turns[i][0]) != (N.CardsDrawn[i]))
-                    return false;
+                string s = c.ToString();
+
+                if (Draws.ContainsKey(s))
+                {
+                    Draws[s]++;
+                }
+                else
+                {
+                    Draws[s] = 1;
+                }
             }
-            return true;
+
+            if (Const.DEBUG_MODE)
+            {
+                Console.WriteLine("-----------------------\n" + N.CardsDrawn);
+                foreach (KeyValuePair<string, int> p in Draws)
+                    Console.WriteLine(p.Key + " --- " + p.Value);
+            }
+
+            return Validator.Check(N.CardsDrawn.Length - 1, Draws);
         }
 
         public void DebugPrint()
         {
-            foreach (string Turn in Turns)
-            {
-                Console.WriteLine("LINE v");
-                Console.WriteLine(Turn);
-            }
+            //TODO
         }
     }
 }

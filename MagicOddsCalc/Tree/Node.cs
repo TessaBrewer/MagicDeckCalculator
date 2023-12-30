@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MagicOddsCalc.Util;
 
-namespace MagicOddsCalc
+namespace MagicOddsCalc.Tree
 {
     internal class Node
     {
@@ -40,7 +41,7 @@ namespace MagicOddsCalc
             int CardsInDeck = 0;
             foreach (KeyValuePair<char, int> kv in Deck) { CardsInDeck += kv.Value; }
 
-            foreach (KeyValuePair <char, int> kv in Deck)
+            foreach (KeyValuePair<char, int> kv in Deck)
             {
                 if (kv.Value <= 0)
                     continue;
@@ -61,7 +62,7 @@ namespace MagicOddsCalc
             {
                 Console.Write("\\-");
                 indent += "  ";
-            } 
+            }
             else
             {
                 Console.Write("|-");

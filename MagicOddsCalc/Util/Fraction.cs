@@ -5,36 +5,35 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MagicOddsCalc
+namespace MagicOddsCalc.Util
 {
     internal class Fraction
     {
         private long Numerator;
         private long Denominator;
-        public Fraction() 
+        public Fraction()
         {
-            this.Numerator = 1;
-            this.Denominator = 1;
+            Numerator = 1;
+            Denominator = 1;
         }
 
         public Fraction(int n, int d)
         {
-            this.Numerator = n; 
-            this.Denominator = d;
-            this.Simplify();
+            Numerator = n;
+            Denominator = d;
+            Simplify();
         }
 
         public Fraction(long n, long d)
         {
-            this.Numerator = n;
-            this.Denominator = d;
-            this.Simplify();
+            Numerator = n;
+            Denominator = d;
+            Simplify();
         }
 
         public static Fraction operator *(Fraction a, Fraction b)
         {
             Fraction NewFraction = new Fraction(a.Numerator * b.Numerator, a.Denominator * b.Denominator);
-            NewFraction.Simplify();
             return NewFraction;
         }
 
